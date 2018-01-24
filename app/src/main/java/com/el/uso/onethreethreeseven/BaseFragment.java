@@ -4,6 +4,10 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Created by Cash on 23/01/2018.
@@ -16,6 +20,8 @@ public class BaseFragment extends Fragment {
 
     private Context mContext;
     protected SharedPreferences mPrefs;
+    private View mContentView;
+    private TextView mTextMessage;
 
     @Override
     public void onAttach(Context context) {
@@ -27,6 +33,14 @@ public class BaseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPrefs = mContext.getSharedPreferences(ConstantValues.PREFS_NAME, Context.MODE_PRIVATE);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        mContentView = inflater.inflate(R.layout.base_fragment, container, false);
+        mTextMessage = mContentView.findViewById(R.id.message);
+        return mContentView;
     }
 
     @Override

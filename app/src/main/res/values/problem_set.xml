@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="problem_title">
+        <item>"Two Sum"</item>
+        <item>"Add Two Numbers"</item>
+        <item>"Longest Substring Without Repeating Characters"</item>
+        <item>"Median of Two Sorted Arrays"</item>
+        <item>"Longest Palindromic Substring"</item>
+        <item>"ZigZag Conversion"</item>
+        <item>"Reverse Integer"</item>
+        <item>"String to Integer (atoi)"</item>
+        <item>"Palindrome Number"</item>
+        <item>"Regular Expression Matching"</item>
+        <item>"Container With Most Water"</item>
+        <item>"Integer to Roman"</item>
+        <item>"Roman to Integer"</item>
+        <item>"Longest Common Prefix"</item>
+        <item>"3Sum"</item>
+        <item>"3Sum Closest"</item>
+        <item>"Letter Combinations of a Phone Number"</item>
+        <item>"4Sum"</item>
+        <item>"Remove Nth Node From End of List"</item>
+        <item>"Valid Parentheses"</item>
+        <item>"Merge Two Sorted Lists"</item>
+        <item>"Generate Parentheses"</item>
+        <item>"Merge k Sorted Lists"</item>
+        <item>"Swap Nodes in Pairs"</item>
+        <item>"Reverse Nodes in k-Group"</item>
+        <item>"Remove Duplicates from Sorted Array"</item>
+        <item>"Remove Element"</item>
+        <item>"Implement strStr()"</item>
+        <item>"Divide Two Integers"</item>
+        <item>"Substring with Concatenation of All Words"</item>
+        <item>"Next Permutation"</item>
+        <item>"Longest Valid Parentheses"</item>
+        <item>"Search in Rotated Sorted Array"</item>
+        <item>"Search for a Range"</item>
+        <item>"Search Insert Position"</item>
+        <item>"Valid Sudoku"</item>
+        <item>"Sudoku Solver"</item>
+        <item>"Count and Say"</item>
+        <item>"Combination Sum"</item>
+        <item>"Combination Sum II"</item>
+        <item>"First Missing Positive"</item>
+        <item>"Trapping Rain Water"</item>
+        <item>"Multiply Strings"</item>
+        <item>"Wildcard Matching"</item>
+        <item>"Jump Game II"</item>
+        <item>"Permutations"</item>
+        <item>"Permutations II"</item>
+        <item>"Rotate Image"</item>
+        <item>"Group Anagrams"</item>
+        <item>"Pow(x, n)"</item>
+        <item>"N-Queens"</item>
+        <item>"N-Queens II"</item>
+        <item>"Maximum Subarray"</item>
+        <item>"Spiral Matrix"</item>
+        <item>"Jump Game"</item>
+        <item>"Merge Intervals"</item>
+        <item>"Insert Interval"</item>
+        <item>"Length of Last Word"</item>
+        <item>"Spiral Matrix II"</item>
+        <item>"Permutation Sequence"</item>
+        <item>"Rotate List"</item>
+        <item>"Unique Paths"</item>
+        <item>"Unique Paths II"</item>
+        <item>"Minimum Path Sum"</item>
+        <item>"Valid Number"</item>
+        <item>"Plus One"</item>
+        <item>"Add Binary"</item>
+        <item>"Text Justification"</item>
+        <item>"Sqrt(x)"</item>
+        <item>"Climbing Stairs"</item>
+        <item>"Simplify Path"</item>
+        <item>"Edit Distance"</item>
+        <item>"Set Matrix Zeroes"</item>
+        <item>"Search a 2D Matrix"</item>
+        <item>"Sort Colors"</item>
+        <item>"Minimum Window Substring"</item>
+        <item>"Combinations"</item>
+        <item>"Subsets"</item>
+        <item>"Word Search"</item>
+        <item>"Remove Duplicates from Sorted Array II"</item>
+        <item>"Search in Rotated Sorted Array II"</item>
+        <item>"Remove Duplicates from Sorted List II"</item>
+        <item>"Remove Duplicates from Sorted List"</item>
+        <item>"Largest Rectangle in Histogram"</item>
+        <item>"Maximal Rectangle"</item>
+        <item>"Partition List"</item>
+        <item>"Scramble String"</item>
+        <item>"Merge Sorted Array"</item>
+        <item>"Gray Code"</item>
+        <item>"Subsets II"</item>
+        <item>"Decode Ways"</item>
+        <item>"Reverse Linked List II"</item>
+        <item>"Restore IP Addresses"</item>
+        <item>"Binary Tree Inorder Traversal"</item>
+        <item>"Unique Binary Search Trees II"</item>
+        <item>"Unique Binary Search Trees"</item>
+        <item>"Interleaving String"</item>
+        <item>"Validate Binary Search Tree"</item>
+        <item>"Recover Binary Search Tree"</item>
+        <item>"Same Tree"</item>
+    </string-array>
+</resources>

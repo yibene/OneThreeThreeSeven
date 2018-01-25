@@ -2,7 +2,7 @@ package com.el.uso.onethreethreeseven;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.el.uso.onethreethreeseven.dummy.DummyContent;
-import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.el.uso.onethreethreeseven.leet.ProblemSetAdapter;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link MainUIListener}
  * interface.
  */
 public class ItemFragment extends BaseFragment {
@@ -27,7 +25,8 @@ public class ItemFragment extends BaseFragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private MainUIListener mListener;
+    private ProblemSetAdapter mAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -64,22 +63,32 @@ public class ItemFragment extends BaseFragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+            LinearLayoutManager manager;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                manager = new LinearLayoutManager(context);
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                manager = new GridLayoutManager(context, mColumnCount);
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setLayoutManager(manager);
+            mAdapter = new ProblemSetAdapter(DummyContent.ITEMS, mListener);
+            recyclerView.setAdapter(mAdapter);
+            recyclerView.addItemDecoration(new DividerItemDecoration(context, manager.getOrientation()));
         }
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof MainUIListener) {
+            mListener = (MainUIListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -102,8 +111,4 @@ public class ItemFragment extends BaseFragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
-    }
 }

@@ -1,4 +1,4 @@
-package com.el.uso.onethreethreeseven;
+package com.el.uso.onethreethreeseven.leet;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,22 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.el.uso.onethreethreeseven.ItemFragment.OnListFragmentInteractionListener;
+import com.el.uso.onethreethreeseven.MainUIListener;
+import com.el.uso.onethreethreeseven.R;
 import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link MainUIListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+public class ProblemSetAdapter extends RecyclerView.Adapter<ProblemSetAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final MainUIListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public ProblemSetAdapter(List<DummyItem> items, MainUIListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +30,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.problem_set_row, parent, false);
         return new ViewHolder(view);
     }
 
@@ -65,8 +66,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.problem_number);
+            mContentView = view.findViewById(R.id.problem_title);
         }
 
         @Override

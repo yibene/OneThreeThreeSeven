@@ -53,7 +53,6 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
         super.onCreate(savedInstanceState);
         mPrefs = mContext.getSharedPreferences(ConstantValues.PREFS_NAME, Context.MODE_PRIVATE);
         mAdapter = new ProblemSetAdapter(mContext, R.layout.problem_set_row);
-        mProblemSetList.setAdapter(mAdapter);
     }
 
     @Override
@@ -62,6 +61,8 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
         mContentView = inflater.inflate(R.layout.problem_set_list, container, false);
         mProblemSetList = mContentView.findViewById(android.R.id.list);
         mProblemSetList.setOnItemClickListener(this);
+        mProblemSetList.setAdapter(mAdapter);
+
         return mContentView;
     }
 

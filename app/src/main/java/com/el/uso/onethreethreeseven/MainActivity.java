@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
+import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
 import com.el.uso.onethreethreeseven.leet.ProblemSet;
 import com.el.uso.onethreethreeseven.leet.ProblemSetListFragment;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements MainUIListener {
 
     private FragmentManager mFM;
-    private TextView mTextMessage;
+    private ArrayList<ProblemSet> mProblemSet;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -25,13 +25,16 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    BaseFragment baseFragment = new BaseFragment();
+                    mFM.beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
                     return true;
                 case R.id.navigation_problems:
-                    mTextMessage.setText(R.string.title_problems);
+                    ProblemSetListFragment problemFragment = new ProblemSetListFragment();
+                    mFM.beginTransaction().replace(R.id.fragment_container, problemFragment).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    ItemFragment itemFragment = new ItemFragment();
+                    mFM.beginTransaction().replace(R.id.fragment_container, itemFragment).commit();
                     return true;
             }
             return false;
@@ -44,15 +47,26 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         setContentView(R.layout.activity_main);
 
         mFM = getFragmentManager();
-        mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BaseFragment baseFragment = new BaseFragment();
+        mFM.beginTransaction().add(R.id.fragment_container, baseFragment).commit();
+        mProblemSet = new ArrayList<>();
+        String[] titles = getResources().getStringArray(R.array.problem_title);
+        for (int i = 0; i < titles.length; i++) {
+            mProblemSet.add(new ProblemSet("" + (i+1), titles[i]));
+        }
     }
 
     @Override
     public void queryProblemSetList() {
-        ProblemSetListFragment fragment = (ProblemSetListFragment) mFM.findFragmentByTag(ConstantValues.PROBLEM_SET_LIST_FRAGMENT);
-        fragment.updateProblemSetList(new ArrayList<ProblemSet>());
+        ProblemSetListFragment fragment = (ProblemSetListFragment) mFM.findFragmentById(R.id.fragment_container);
+        fragment.updateProblemSetList(mProblemSet);
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyItem item) {
+
     }
 
 }

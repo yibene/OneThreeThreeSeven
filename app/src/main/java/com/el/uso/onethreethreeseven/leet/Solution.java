@@ -1,5 +1,10 @@
 package com.el.uso.onethreethreeseven.leet;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by Cash on 24/01/2018.
  *
@@ -38,10 +43,33 @@ public class Solution {
         return sSolution;
     }
 
+    public int[] getNRandomNumbers(int max, int n) {
+        int[] numbers = new int[n];
+        List<Integer> randomList = new ArrayList<>();
+        for (int i = 0; i < max; i++) {
+            randomList.add(i);
+        }
+        Collections.shuffle(randomList);
+        for (int i = 0; i < n; i++) {
+            numbers[i] = randomList.get(i);
+        }
+        return numbers;
+    }
+
+    // nums = [2, 7, 11, 15], target = 9
+    // return [0, 1]
     public int[] twoSum(int[] nums, int target) {
-        int i = 0;
-        int j = 0;
-        return new int[] {i, j};
+        HashMap<Integer, Integer> twoSum = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            twoSum.put(nums[i], i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int sub = target - nums[i];
+            if (twoSum.containsValue(sub) && twoSum.get(sub) != i) {
+                return new int[] {i, twoSum.get(sub)};
+            }
+        }
+        throw new IllegalArgumentException("No solution");
     }
 
     public ListNode generateNode(int i) {

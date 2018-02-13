@@ -52,10 +52,14 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         BaseFragment baseFragment = new BaseFragment();
         mFM.beginTransaction().add(R.id.fragment_container, baseFragment).commit();
         mProblemSet = new ArrayList<>();
-        String[] titles = getResources().getStringArray(R.array.problem_title);
+        String[] titles = getProblemSetTitle();
         for (int i = 0; i < titles.length; i++) {
             mProblemSet.add(new ProblemSet("" + (i+1), titles[i]));
         }
+    }
+
+    public String[] getProblemSetTitle() {
+        return getResources().getStringArray(R.array.problem_title);
     }
 
     @Override

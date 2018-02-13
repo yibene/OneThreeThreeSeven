@@ -1,6 +1,7 @@
 package com.el.uso.onethreethreeseven.leet;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.os.Bundle;
@@ -79,7 +80,11 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        DetailFragment detail = DetailFragment.newInstance(position);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, detail);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 
     public void updateProblemSetList(List<ProblemSet> problemSets) {

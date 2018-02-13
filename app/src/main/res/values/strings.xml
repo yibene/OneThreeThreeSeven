@@ -3,4 +3,6 @@
     <string name="title_home">"Home"</string>
     <string name="title_problems">"Problems"</string>
     <string name="title_notifications">"Notifications"</string>
+    <string name="roll">Roll</string>
+    <string name="calculate">Calculate</string>
 </resources>

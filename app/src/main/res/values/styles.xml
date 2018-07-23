@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="font_gsb1">
+        <item name="font_name">Graphik-Semibold.otf</item>
+        <item name="android:textSize">13.3dp</item>
+        <item name="non_us_font_name">SourceHanSansTW-Bold.otf</item>
+        <item name="non_us_font_size">13.3dp</item>
+    </style>
+
+    <style name="font_gsb2">
+        <item name="font_name">Graphik-Semibold.otf</item>
+        <item name="android:textSize">60dp</item>
+        <item name="non_us_font_name">SourceHanSansTW-Bold.otf</item>
+        <item name="non_us_font_size">60dp</item>
+    </style>
+
 </resources>

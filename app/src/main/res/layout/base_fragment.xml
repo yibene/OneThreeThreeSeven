@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:style="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/title_home"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"/>
+
+    <com.el.uso.onethreethreeseven.view.FlatButton
+        android:id="@+id/test_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:text="@string/test_string"
+        style="@style/font_gsb2"
+        style:isBound="true" />
+
+    <com.el.uso.onethreethreeseven.view.FlatButton
+        android:id="@+id/test_message2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccentLight"
+        android:text="@string/test_string"
+        style="@style/font_gsb2"
+        style:isBound="true"
+        style:debug="false"/>
+
+    <com.el.uso.onethreethreeseven.view.FlatButton
+        android:id="@+id/test_message3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:text="@string/test_string3"
+        style="@style/font_gsb2"
+        style:isBound="true"
+        style:debug="true"/>
 
 </LinearLayout>

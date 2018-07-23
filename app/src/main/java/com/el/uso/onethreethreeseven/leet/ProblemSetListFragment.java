@@ -3,14 +3,12 @@ package com.el.uso.onethreethreeseven.leet;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,6 +16,8 @@ import com.el.uso.onethreethreeseven.BaseFragment;
 import com.el.uso.onethreethreeseven.ConstantValues;
 import com.el.uso.onethreethreeseven.MainUIListener;
 import com.el.uso.onethreethreeseven.R;
+import com.el.uso.onethreethreeseven.leet.problem.ATNFragment;
+import com.el.uso.onethreethreeseven.leet.problem.TSFragment;
 
 import java.util.List;
 
@@ -80,7 +80,17 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        DetailFragment detail = DetailFragment.newInstance(position);
+        DetailFragment detail;
+        switch (position) {
+            case 0:
+                detail = TSFragment.newInstance(position);
+                break;
+            case 1:
+                detail = ATNFragment.newInstance(position);
+                break;
+            default:
+                detail = DetailFragment.newInstance(position);
+        }
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, detail);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);

@@ -22,7 +22,7 @@ public class Solution {
             val = x;
         }
 
-        public String printNode() {
+        public String dumpNode() {
             StringBuilder sb = new StringBuilder("" + val);
             while (this.next != null) {
                 sb.append(" -> " + this.next.val);
@@ -41,6 +41,15 @@ public class Solution {
             sSolution = new Solution();
         }
         return sSolution;
+    }
+
+    public String printArray(int[] nums) {
+        StringBuilder sb = new StringBuilder("[" + nums[0]);
+        for (int i = 1; i < nums.length; i++) {
+            sb.append(", " + i);
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     public int[] getNRandomNumbers(int max, int n) {
@@ -70,6 +79,16 @@ public class Solution {
             }
         }
         throw new IllegalArgumentException("No solution");
+    }
+
+    public String printNode(int num) {
+        ListNode node = generateNode(num);
+        StringBuilder sb = new StringBuilder("" + node.val);
+        while (node.next != null) {
+            sb.append(" -> " + node.next.val);
+            node.next = node.next.next;
+        }
+        return sb.toString();
     }
 
     public ListNode generateNode(int i) {

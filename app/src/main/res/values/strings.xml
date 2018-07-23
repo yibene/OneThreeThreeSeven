@@ -3,6 +3,11 @@
     <string name="title_home">"Home"</string>
     <string name="title_problems">"Problems"</string>
     <string name="title_notifications">"Notifications"</string>
-    <string name="roll">Roll</string>
-    <string name="calculate">Calculate</string>
+    <string name="roll">"Roll"</string>
+    <string name="calculate">"Calculate"</string>
+    <string name="test_string">"Apfjkgy"</string>
+    <string name="test_string2">"ApfjkgyⓇ"</string>
+    <string name="test_string3">"PfJKcYA"</string>
+    <string name="test_string4">"ⓇPfJKcYA"</string>
+
 </resources>

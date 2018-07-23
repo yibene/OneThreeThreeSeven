@@ -88,11 +88,11 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
                 Log.w(TAG, "node1 = " + num1 + ", node2 = " + num2);
                 mNode1 = Solution.getInstance().generateNode(num1);
                 mNode2 = Solution.getInstance().generateNode(num2);
-                mNodeText1.setText(mNode1.printNode());
-                mNodeText2.setText(mNode2.printNode());
+                mNodeText1.setText(Solution.getInstance().printNode(num1));
+                mNodeText2.setText(Solution.getInstance().printNode(num1));
                 break;
             case R.id.calculate:
-                mResult.setText(Solution.getInstance().addTwoNumbers(mNode1, mNode2).printNode());
+                mResult.setText(Solution.getInstance().addTwoNumbers(mNode1, mNode2).dumpNode());
                 break;
             default:
         }

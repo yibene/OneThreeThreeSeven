@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import com.el.uso.onethreethreeseven.ConstantValues;
 import com.el.uso.onethreethreeseven.MainActivity;
 import com.el.uso.onethreethreeseven.R;
+import com.el.uso.onethreethreeseven.log.L;
 
 /**
  * Created by Cash on 23/01/2018.
@@ -66,6 +66,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        L.d(TAG, "onCreateView");
         mContentView = inflater.inflate(R.layout.detail_fragment, container, false);
         mTitle = mContentView.findViewById(R.id.title);
         mTitle.setText(((MainActivity) mContext).getProblemSetTitle()[(int) getArguments().get("index")]);
@@ -85,7 +86,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
             case R.id.roll:
                 int num1 = (int) (Math.random() * 100000);
                 int num2 = (int) (Math.random() * 100000);
-                Log.w(TAG, "node1 = " + num1 + ", node2 = " + num2);
+                L.w(TAG, "node1 = " + num1 + ", node2 = " + num2);
                 mNode1 = Solution.getInstance().generateNode(num1);
                 mNode2 = Solution.getInstance().generateNode(num2);
                 mNodeText1.setText(Solution.getInstance().printNode(num1));
@@ -93,6 +94,10 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.calculate:
                 mResult.setText(Solution.getInstance().addTwoNumbers(mNode1, mNode2).dumpNode());
+                long time = System.currentTimeMillis();
+                String[] ss = {"0","11","1000","01","0","101","1","1","1","0","0","0","0","1","0","0110101","0","11","01","00","01111","0011","1","1000","0","11101","1","0","10","0111"};
+                L.d(TAG, "findMaxForm = " + Solution.getInstance().findMaxForm(ss, 9, 80));
+                L.d(TAG, "time = " + (System.currentTimeMillis() - time)/1000f + "sec");
                 break;
             default:
         }

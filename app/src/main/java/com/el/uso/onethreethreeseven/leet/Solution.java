@@ -1,7 +1,9 @@
 package com.el.uso.onethreethreeseven.leet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -120,6 +122,62 @@ public class Solution {
         return sum;
     }
 
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][] counts = getCounts(strs);
+        Arrays.sort(counts, getGreedyComparator(m, n));   //greedy order
+        int max = 0;
+        for (int i = 0; i < counts.length; i++) {   //greedy
+            if (counts.length - i < max) return max;
+            int zero = m;
+            int one = n;
+            int j = i;
+            while (j < counts.length) {
+                if (counts[j][0] <= zero && counts[j][1] <= one) {
+                    zero -= counts[j][0];
+                    one -= counts[j][1];
+                } else {
+                    break;
+                }
+                j++;
+            }
+            max = Math.max(j-i, max);
+        }
+        return max;
+    }
 
+    public int[][] getCounts(String[] input) {
+        int[][] counts = new int[input.length][2];
+        for (int i = 0; i < input.length; i++) {
+            for (int j= 0; j < input[i].length(); j++) {
+                if (input[i].charAt(j) == '0') counts[i][0]++;
+                if (input[i].charAt(j) == '1') counts[i][1]++;
+            }
+        }
+        return counts;
+    }
+
+    public Comparator<int[]> getGreedyComparator(final int zeroes, final int ones) {
+        return new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (zeroes == ones) {
+                    if (o1[0] + o1[1] - o2[0] - o2[1] == 0) {
+                        return Math.min(o1[0], o1[1]) - Math.min(o2[0], o2[1]);
+                    }
+                    return o1[0] + o1[1] - o2[0] - o2[1];
+                } else if (zeroes < ones) {
+                    if (o1[0] == o2[0]) {
+                        return o1[1] - o2[1];
+                    }
+                    return o1[0] - o2[0];
+                } else {
+                    if (o1[1] == o2[1]) {
+                        return o1[0] - o2[0];
+                    }
+                    return o1[1] - o2[1];
+                }
+            }
+        };
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.el.uso.onethreethreeseven.leet.problem;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;

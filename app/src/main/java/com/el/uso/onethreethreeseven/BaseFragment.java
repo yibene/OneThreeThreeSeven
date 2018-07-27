@@ -36,13 +36,13 @@ public class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        L.d(TAG, "onCreate");
         mPrefs = mContext.getSharedPreferences(ConstantValues.PREFS_NAME, Context.MODE_PRIVATE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        L.d(TAG, "onCreateView");
         mContentView = inflater.inflate(R.layout.base_fragment, container, false);
         mTextMessage = mContentView.findViewById(R.id.message);
         final FlatButton flat = mContentView.findViewById(R.id.test_message);

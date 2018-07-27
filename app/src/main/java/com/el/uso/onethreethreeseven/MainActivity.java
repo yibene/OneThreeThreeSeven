@@ -13,11 +13,13 @@ import android.view.MenuItem;
 import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
 import com.el.uso.onethreethreeseven.leet.ProblemSet;
 import com.el.uso.onethreethreeseven.leet.ProblemSetListFragment;
+import com.el.uso.onethreethreeseven.log.L;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainUIListener {
 
+    private static final String TAG = "MainActivity";
     private FragmentManager mFM;
     private ArrayList<ProblemSet> mProblemSet;
 
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        L.d(TAG, "onCreate");
         mFM = getFragmentManager();
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

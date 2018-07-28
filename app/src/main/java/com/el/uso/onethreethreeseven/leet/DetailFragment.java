@@ -84,13 +84,13 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.roll:
-                int num1 = (int) (Math.random() * 100000);
-                int num2 = (int) (Math.random() * 100000);
-                L.w(TAG, "node1 = " + num1 + ", node2 = " + num2);
-                mNode1 = Solution.getInstance().generateNode(num1);
-                mNode2 = Solution.getInstance().generateNode(num2);
-                mNodeText1.setText(Solution.getInstance().printNode(num1));
-                mNodeText2.setText(Solution.getInstance().printNode(num1));
+//                int num1 = (int) (Math.random() * 100000);
+//                int num2 = (int) (Math.random() * 100000);
+                int[] num = Solution.getInstance().getNRandomNumbers(1000000, 2);
+                mNode1 = Solution.getInstance().generateNode(num[0]);
+                mNode2 = Solution.getInstance().generateNode(num[1]);
+                mNodeText1.setText(Solution.getInstance().generateNode(num[0]).dumpNode());
+                mNodeText2.setText(Solution.getInstance().generateNode(num[1]).dumpNode());
                 break;
             case R.id.calculate:
                 mResult.setText(Solution.getInstance().addTwoNumbers(mNode1, mNode2).dumpNode());

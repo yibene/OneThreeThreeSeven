@@ -1,10 +1,9 @@
 package com.el.uso.onethreethreeseven;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import com.el.uso.onethreethreeseven.view.FlatButton;
 
 public class BaseFragment extends Fragment {
 
-    private static final String TAG = BaseFragment.class.getSimpleName();
+    private static final String TAG = "BaseFragment";
 
     private Context mContext;
     protected SharedPreferences mPrefs;
@@ -114,6 +113,8 @@ public class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        ((MainActivity) getActivity()).setNavigationSelected(R.id.navigation_home);
     }
 
     @Override
@@ -129,6 +130,10 @@ public class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    public boolean onBackPressed() {
+        return false;
     }
 
     @Override

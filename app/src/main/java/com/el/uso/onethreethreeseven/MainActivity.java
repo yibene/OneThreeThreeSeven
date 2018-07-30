@@ -1,6 +1,6 @@
 package com.el.uso.onethreethreeseven;
 
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
 import com.el.uso.onethreethreeseven.leet.ProblemSet;
+import com.el.uso.onethreethreeseven.leet.ProblemSetFragment;
 import com.el.uso.onethreethreeseven.leet.ProblemSetListFragment;
 import com.el.uso.onethreethreeseven.log.L;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
     private static final String TAG = "MainActivity";
     private FragmentManager mFM;
     private ArrayList<ProblemSet> mProblemSet;
+    BottomNavigationView mNavigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
                     mFM.beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
                     return true;
                 case R.id.navigation_problems:
-                    ProblemSetListFragment problemFragment = new ProblemSetListFragment();
+                    ProblemSetFragment problemFragment = new ProblemSetFragment();
                     mFM.beginTransaction().replace(R.id.fragment_container, problemFragment).commit();
                     return true;
                 case R.id.navigation_notifications:
@@ -51,11 +53,11 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         L.d(TAG, "onCreate");
-        mFM = getFragmentManager();
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        mFM = getSupportFragmentManager();
+        BottomNavigationView mNavigation = findViewById(R.id.navigation);
+        mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BaseFragment baseFragment = new BaseFragment();
-        mFM.beginTransaction().add(R.id.fragment_container, baseFragment).commit();
+        mFM.beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
         mProblemSet = new ArrayList<>();
         String[] titles = getProblemSetTitle();
         for (int i = 0; i < titles.length; i++) {
@@ -70,13 +72,19 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
 
     @Override
     public void queryProblemSetList() {
-        ProblemSetListFragment fragment = (ProblemSetListFragment) mFM.findFragmentById(R.id.fragment_container);
+        ProblemSetFragment fragment = (ProblemSetFragment) mFM.findFragmentById(R.id.fragment_container);
         fragment.updateProblemSetList(mProblemSet);
     }
 
     @Override
     public void onListFragmentInteraction(DummyItem item) {
 
+    }
+
+    public void setNavigationSelected(int itemId) {
+        if (mNavigation != null) {
+            mNavigation.setSelectedItemId(itemId);
+        }
     }
 
 

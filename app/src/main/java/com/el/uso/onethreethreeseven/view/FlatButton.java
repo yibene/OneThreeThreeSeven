@@ -111,7 +111,7 @@ public class FlatButton extends AppCompatTextView {
         mNonUSFontSize = (float) typedArray.getDimensionPixelSize(R.styleable.FlatButton_non_us_font_size, 0);
         mPressStateController.setEnablePressState(typedArray.getBoolean(R.styleable.FlatButton_press_state, true));
         mPressStateController.setScene(typedArray.getInt(R.styleable.FlatButton_scene, 0));
-        isDebug = typedArray.getBoolean(R.styleable.FlatButton_debug, false);
+//        isDebug = typedArray.getBoolean(R.styleable.FlatButton_debug, false);
         mExtraHeight = typedArray.getDimensionPixelSize(R.styleable.FlatButton_extra_height, 0);
         mExtraWidth = typedArray.getDimensionPixelSize(R.styleable.FlatButton_extra_width, 0);
         mLinkPage = typedArray.getInt(R.styleable.FlatButton_link_page, -1);

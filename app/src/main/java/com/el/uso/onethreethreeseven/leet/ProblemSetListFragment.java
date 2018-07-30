@@ -1,7 +1,7 @@
 package com.el.uso.onethreethreeseven.leet;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,12 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.el.uso.onethreethreeseven.BaseFragment;
-import com.el.uso.onethreethreeseven.ConstantValues;
+import com.el.uso.onethreethreeseven.MainActivity;
 import com.el.uso.onethreethreeseven.MainUIListener;
 import com.el.uso.onethreethreeseven.R;
-import com.el.uso.onethreethreeseven.leet.problem.ATNFragment;
-import com.el.uso.onethreethreeseven.leet.problem.TSFragment;
+import com.el.uso.onethreethreeseven.log.L;
 
 import java.util.List;
 
@@ -26,15 +24,22 @@ import java.util.List;
  *
  */
 
-public class ProblemSetListFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+public class ProblemSetListFragment extends Fragment {
 
-    private static String TAG = ProblemSetListFragment.class.getSimpleName();
+    private static final String TAG = "ProblemSetListFragment";
 
     private Context mContext;
     private View mContentView;
     private ListView mProblemSetList;
     private ProblemSetAdapter mAdapter;
     private MainUIListener mCallback;
+    private AdapterView.OnItemClickListener mOnItemClickListener;
+
+    public static ProblemSetListFragment newInstance(AdapterView.OnItemClickListener listener) {
+        ProblemSetListFragment fragment = new ProblemSetListFragment();
+        fragment.setOnItemClickListener(listener);
+        return fragment;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -52,16 +57,16 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPrefs = mContext.getSharedPreferences(ConstantValues.PREFS_NAME, Context.MODE_PRIVATE);
         mAdapter = new ProblemSetAdapter(mContext, R.layout.problem_set_row);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        L.d(TAG, "onCreateView");
         mContentView = inflater.inflate(R.layout.problem_set_list, container, false);
         mProblemSetList = mContentView.findViewById(android.R.id.list);
-        mProblemSetList.setOnItemClickListener(this);
+        mProblemSetList.setOnItemClickListener(mOnItemClickListener);
         mProblemSetList.setAdapter(mAdapter);
 
         return mContentView;
@@ -75,26 +80,14 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
     @Override
     public void onResume() {
         super.onResume();
+        ((MainActivity) getActivity()).setNavigationSelected(R.id.navigation_problems);
         mCallback.queryProblemSetList();
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        DetailFragment detail;
-        switch (position) {
-            case 0:
-                detail = TSFragment.newInstance(position);
-                break;
-            case 1:
-                detail = ATNFragment.newInstance(position);
-                break;
-            default:
-                detail = DetailFragment.newInstance(position);
-        }
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, detail);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+    public void onDestroyView() {
+        super.onDestroyView();
+        L.d(TAG, "onDestroyView");
     }
 
     public void updateProblemSetList(List<ProblemSet> problemSets) {
@@ -123,7 +116,7 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
             View row = convertView;
             ProblemSet problem = getItem(position);
             if (row == null) {
-                LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+                LayoutInflater inflater = ((MainActivity) mContext).getLayoutInflater();
                 row = inflater.inflate(mLayoutResId, parent, false);
             }
             TextView numberView = row.findViewById(R.id.problem_number);
@@ -135,4 +128,9 @@ public class ProblemSetListFragment extends BaseFragment implements AdapterView.
             return row;
         }
     }
+
+    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
+
 }

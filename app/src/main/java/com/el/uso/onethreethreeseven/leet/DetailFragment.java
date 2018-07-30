@@ -1,6 +1,6 @@
 package com.el.uso.onethreethreeseven.leet;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import com.el.uso.onethreethreeseven.log.L;
 
 public class DetailFragment extends Fragment implements View.OnClickListener {
 
-    private static final String TAG = DetailFragment.class.getSimpleName();
+    private static final String TAG = "DetailFragment";
 
     private Context mContext;
     protected SharedPreferences mPrefs;
@@ -116,6 +116,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        ((MainActivity) getActivity()).setNavigationSelected(R.id.navigation_problems);
     }
 
     @Override
@@ -131,6 +132,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        L.d(TAG, "onDestroyView");
     }
 
     @Override

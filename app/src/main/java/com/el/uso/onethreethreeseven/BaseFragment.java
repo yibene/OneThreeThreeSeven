@@ -26,6 +26,10 @@ public class BaseFragment extends Fragment {
     private View mContentView;
     private TextView mTextMessage;
 
+    public static BaseFragment newInstance() {
+        return new BaseFragment();
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

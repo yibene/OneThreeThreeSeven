@@ -1,5 +1,7 @@
 package com.el.uso.onethreethreeseven;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -13,8 +15,11 @@ import android.view.MenuItem;
 import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
 import com.el.uso.onethreethreeseven.leet.ProblemSet;
 import com.el.uso.onethreethreeseven.leet.ProblemSetFragment;
-import com.el.uso.onethreethreeseven.leet.ProblemSetListFragment;
 import com.el.uso.onethreethreeseven.log.L;
+import com.el.uso.onethreethreeseven.web.CustomWebFragment;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.wallet.AutoResolveHelper;
+import com.google.android.gms.wallet.PaymentData;
 
 import java.util.ArrayList;
 
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
     private FragmentManager mFM;
     private ArrayList<ProblemSet> mProblemSet;
     BottomNavigationView mNavigation;
+    private CustomWebFragment mCustomWebView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,16 +38,20 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    BaseFragment baseFragment = new BaseFragment();
+                    BaseFragment baseFragment = BaseFragment.newInstance();
                     mFM.beginTransaction().replace(R.id.fragment_container, baseFragment).commit();
                     return true;
                 case R.id.navigation_problems:
-                    ProblemSetFragment problemFragment = new ProblemSetFragment();
+                    ProblemSetFragment problemFragment = ProblemSetFragment.newInstance();
                     mFM.beginTransaction().replace(R.id.fragment_container, problemFragment).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    ItemFragment itemFragment = new ItemFragment();
+                    ItemFragment itemFragment = ItemFragment.newInstance();
                     mFM.beginTransaction().replace(R.id.fragment_container, itemFragment).commit();
+                    return true;
+                case R.id.custom_web_view:
+                    mCustomWebView = CustomWebFragment.newInstance();
+                    mFM.beginTransaction().replace(R.id.fragment_container, mCustomWebView).commit();
                     return true;
             }
             return false;
@@ -66,6 +76,32 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         checkPermission();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case CustomWebFragment.LOAD_PAYMENT_DATA_REQUEST_CODE:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        PaymentData paymentData = PaymentData.getFromIntent(data);
+                        if (mCustomWebView != null) {
+                            mCustomWebView.handlePaymentSuccess(paymentData);
+                        }
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        // Nothing to here normally - the user simply cancelled without selecting a
+                        // payment method.
+                        break;
+                    case AutoResolveHelper.RESULT_ERROR:
+                        Status status = AutoResolveHelper.getStatusFromIntent(data);
+                        if (mCustomWebView != null) {
+                            mCustomWebView.handleError(status.getStatusCode());
+                        }
+                        break;
+                }
+                break;
+        }
+    }
+
     public String[] getProblemSetTitle() {
         return getResources().getStringArray(R.array.problem_title);
     }
@@ -78,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
 
     @Override
     public void onListFragmentInteraction(DummyItem item) {
-
+        L.d(TAG, "onListFragmentInteraction: " + item.id + ", " + item.content + ": " + item.details);
     }
 
     public void setNavigationSelected(int itemId) {
@@ -87,6 +123,10 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     public static final int PERMISSION_1010 = 1010;
 

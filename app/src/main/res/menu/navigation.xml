@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications"/>
 
+    <item
+        android:id="@+id/custom_web_view"
+        android:icon="@drawable/ic_custom_web_view"
+        android:title="@string/title_web_view"/>
+
 </menu>

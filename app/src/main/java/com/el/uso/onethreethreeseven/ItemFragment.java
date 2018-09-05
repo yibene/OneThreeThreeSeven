@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.el.uso.onethreethreeseven.dummy.DummyContent;
 import com.el.uso.onethreethreeseven.leet.ProblemSetAdapter;
+import com.el.uso.onethreethreeseven.log.L;
 
 /**
  * A fragment representing a list of Items.
@@ -21,6 +22,7 @@ import com.el.uso.onethreethreeseven.leet.ProblemSetAdapter;
  */
 public class ItemFragment extends BaseFragment {
 
+    private static final String TAG = "ItemFragment";
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -28,11 +30,8 @@ public class ItemFragment extends BaseFragment {
     private MainUIListener mListener;
     private ProblemSetAdapter mAdapter;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public ItemFragment() {
+    public static ItemFragment newInstance() {
+        return new ItemFragment();
     }
 
     // TODO: Customize parameter initialization
@@ -57,6 +56,7 @@ public class ItemFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        L.d(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
         // Set the adapter

@@ -36,8 +36,11 @@ public class ProblemSetFragment extends BaseFragment implements AdapterView.OnIt
     private Context mContext;
     private View mContentView;
     private MainUIListener mCallback;
-    private AdapterView.OnItemClickListener mOnItemClickListener;
     ProblemSetListFragment mListFragment;
+
+    public static ProblemSetFragment newInstance() {
+        return new ProblemSetFragment();
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -87,6 +90,7 @@ public class ProblemSetFragment extends BaseFragment implements AdapterView.OnIt
 
     @Override
     public boolean onBackPressed() {
+        L.w(TAG, "onBackPressed");
         if (mListFragment.isHidden()) {
             FragmentManager fm = this.getChildFragmentManager();
             fm.popBackStack();

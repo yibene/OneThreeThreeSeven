@@ -22,6 +22,7 @@ public class BaseFragment extends Fragment {
     private static final String TAG = "BaseFragment";
 
     private Context mContext;
+    protected MainActivity mActivity;
     protected SharedPreferences mPrefs;
     private View mContentView;
     private TextView mTextMessage;
@@ -107,6 +108,7 @@ public class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mActivity = (MainActivity) getActivity();
     }
 
     @Override

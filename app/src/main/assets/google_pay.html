@@ -1,8 +1,8 @@
 <iframe id="main" width="100%" height="150" src="https://jsfiddle.net/CashHsiao/sn4w79x0/45/embedded/result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 <div id="message"></div>
 <script>
-	function onPaymentResult(msg) {
-		document.getElementById('message').innerHTML =
-  			"result = " + msg;
-	}
+    function onPaymentResult(paymentData, statusCode) {
+        document.getElementById('message').innerHTML =
+            "result = " + statusCode;
+    }
 </script>

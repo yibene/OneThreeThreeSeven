@@ -14,4 +14,9 @@
         <attr name="link_page" />
         <attr name="fix_layout" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="CircleLoadingView">
+        <attr name="border_width" />
+        <attr name="border_background_color" format="color" />
+        <attr name="border_bmp" format="reference" />
+    </declare-styleable>
 </resources>

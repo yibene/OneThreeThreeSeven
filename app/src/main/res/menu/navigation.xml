@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_custom_web_view"
         android:title="@string/title_web_view"/>
 
+    <item
+        android:id="@+id/map_view"
+        android:icon="@drawable/icon_indicator_l_map_charcoal"
+        android:title="@string/title_map"/>
+
 </menu>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.el.uso.onethreethreeseven.view.MapLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/map_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map_radar_area"/>
+
+        <com.el.uso.onethreethreeseven.view.CircleLoadingView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:border_background_color="@android:color/transparent"
+            app:border_bmp="@drawable/map_radar_vision"
+            app:border_width="0dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/map_radar_mylocation"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/btn_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:src="@drawable/icon_map_btn_position"/>
+
+</com.el.uso.onethreethreeseven.view.MapLayout>

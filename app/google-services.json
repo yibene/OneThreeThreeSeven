@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "935887911140",
+    "project_id": "gogoro.com:bold-camera-818"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935887911140:android:4dc89897168560b9",
+        "android_client_info": {
+          "package_name": "com.gogoro.smartclient"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU6rRz8ZIfAZkNe933Rk_Jblp2OglOwpY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

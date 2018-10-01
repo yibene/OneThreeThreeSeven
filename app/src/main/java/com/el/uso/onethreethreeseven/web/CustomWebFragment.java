@@ -178,13 +178,14 @@ public class CustomWebFragment extends BaseFragment {
         }
     }
 
-    public void handlePaymentSuccess(PaymentData paymentData) {
+    public void handlePaymentSuccess(PaymentData paymentData, int statusCode) {
         // PaymentMethodToken contains the payment information, as well as any additional
         // requested information, such as billing and shipping address.
         //
         // Refer to your processor's documentation on how to proceed from here.
 
         // Re-enables the Pay with Google button.
+        mGooglePayWeb.loadUrl("javascript:onPaymentResult('" + paymentData.toJson() + "', '" + statusCode + "')");
         mGooglePayButton.setClickable(true);
         PaymentMethodToken token = paymentData.getPaymentMethodToken();
 
@@ -218,7 +219,7 @@ public class CustomWebFragment extends BaseFragment {
         // WalletConstants.ERROR_CODE_* constants.
         String errorMsg = "loadPaymentData failed: " + String.format(Locale.getDefault(), "Error code: %d", statusCode);
         L.w(TAG, errorMsg);
-        mGooglePayWeb.loadUrl("javascript:onPaymentResult('" + errorMsg + "')");
+        mGooglePayWeb.loadUrl("javascript:onPaymentResult('" + null + "', '" + statusCode + "')");
         // Re-enables the Pay with Google button.
         mGooglePayButton.setClickable(true);
     }

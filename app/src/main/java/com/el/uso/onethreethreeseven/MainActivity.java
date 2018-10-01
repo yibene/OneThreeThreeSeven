@@ -16,6 +16,7 @@ import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
 import com.el.uso.onethreethreeseven.leet.ProblemSet;
 import com.el.uso.onethreethreeseven.leet.ProblemSetFragment;
 import com.el.uso.onethreethreeseven.log.L;
+import com.el.uso.onethreethreeseven.map.MapFragment;
 import com.el.uso.onethreethreeseven.web.CustomWebFragment;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.wallet.AutoResolveHelper;
@@ -53,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
                     mCustomWebView = CustomWebFragment.newInstance();
                     mFM.beginTransaction().replace(R.id.fragment_container, mCustomWebView).commit();
                     return true;
+                case R.id.map_view:
+                    MapFragment mapFragment = MapFragment.newInstance();
+                    mFM.beginTransaction().replace(R.id.fragment_container, mapFragment).commit();
+                    return true;
             }
             return false;
         }
@@ -80,11 +85,12 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case CustomWebFragment.LOAD_PAYMENT_DATA_REQUEST_CODE:
+                Status status = AutoResolveHelper.getStatusFromIntent(data);
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         PaymentData paymentData = PaymentData.getFromIntent(data);
-                        if (mCustomWebView != null) {
-                            mCustomWebView.handlePaymentSuccess(paymentData);
+                        if (mCustomWebView != null && status != null) {
+                            mCustomWebView.handlePaymentSuccess(paymentData, status.getStatusCode());
                         }
                         break;
                     case Activity.RESULT_CANCELED:
@@ -92,8 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
                         // payment method.
                         break;
                     case AutoResolveHelper.RESULT_ERROR:
-                        Status status = AutoResolveHelper.getStatusFromIntent(data);
-                        if (mCustomWebView != null) {
+                        if (mCustomWebView != null && status != null) {
                             mCustomWebView.handleError(status.getStatusCode());
                         }
                         break;

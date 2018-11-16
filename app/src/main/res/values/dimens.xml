@@ -10,5 +10,5 @@
     <dimen name="buy_button_height">48sp</dimen>
 
     <dimen name="custom_profile_image">50dp</dimen>
-    <dimen name="custom_profile_padding">2dp</dimen>
+    <dimen name="custom_profile_padding">4dp</dimen>
 </resources>

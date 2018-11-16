@@ -27,7 +27,7 @@ public class StationMarker extends BaseMarker {
         mLongitude = data.getGeoPointData().getLongitude();
         mStationData = data;
         mName = mStationData.getDisplayName();
-        mMarkerIcon = R.drawable.map_pin_gostation;
+        mMarkerIcon = R.drawable.map_pin_station;
     }
 
     public StationMarker(LatLng latLng, String name, int iconResource) {
@@ -70,7 +70,8 @@ public class StationMarker extends BaseMarker {
         this.mBatteryCountUpdateTime = batteryCountDate;
     }
 
-    public int getMarkerIcon() {
-        return mMarkerIcon;
+    @Override
+    public int getMarkerIcon(boolean isClustered) {
+        return (isClustered) ? R.drawable.map_pin_station_selected : mMarkerIcon;
     }
 }

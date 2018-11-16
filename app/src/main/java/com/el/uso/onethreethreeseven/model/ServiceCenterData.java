@@ -15,8 +15,8 @@ public class ServiceCenterData extends BaseData {
     private String Name;
     @Expose
     private String Phone;
-
-    private int mLocationType;
+    @Expose
+    protected byte[] Type;
 
     public int getState() {
         return State;
@@ -42,12 +42,12 @@ public class ServiceCenterData extends BaseData {
         Phone = phone;
     }
 
-    public int getLocationType() {
-        return mLocationType;
+    public byte[] getType() {
+        return Type;
     }
 
-    public void setLocationType(int type) {
-        mLocationType = type;
+    public void setType(byte[] type) {
+        Type = type;
     }
 
     public static ServiceCenterData fromJson(String json) {

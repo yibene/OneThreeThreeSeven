@@ -24,8 +24,6 @@ public class BaseData {
     @Expose
     protected String Address;
     @Expose
-    protected byte[] Type;
-    @Expose
     protected DateTime UpdateTime;
     @Expose
     protected byte[] AvailableTime;
@@ -97,14 +95,6 @@ public class BaseData {
 
     public void setAddress(String address) {
         Address = address;
-    }
-
-    public byte[] getType() {
-        return Type;
-    }
-
-    public void setType(byte[] type) {
-        Type = type;
     }
 
     public DateTime getUpdateTime() {

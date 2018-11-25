@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -178,5 +179,25 @@ public class Utils {
         }
 
         return result;
+    }
+
+    public static String getStackTrace(Throwable ex) {
+        try {
+            if (ex == null) {
+                return null;
+            }
+
+            StringWriter errors = new StringWriter();
+            ex.printStackTrace(new PrintWriter(errors));
+            return errors.toString();
+        } catch (Exception e) {
+            L.e("EncryptMgr:getStackTrace:" + e);
+            e.printStackTrace();
+        } catch (Error er) {
+            L.e("EncryptMgr:getStackTrace:" + er);
+            er.printStackTrace();
+        }
+
+        return null;
     }
 }

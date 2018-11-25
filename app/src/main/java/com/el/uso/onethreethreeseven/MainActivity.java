@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.el.uso.onethreethreeseven.dummy.DummyContent.DummyItem;
+import com.el.uso.onethreethreeseven.helper.TaskRunningManager;
 import com.el.uso.onethreethreeseven.leet.ProblemSet;
 import com.el.uso.onethreethreeseven.leet.ProblemSetFragment;
 import com.el.uso.onethreethreeseven.log.L;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
         setContentView(R.layout.activity_main);
         L.d(TAG, "onCreate");
         mFM = getSupportFragmentManager();
+        TaskRunningManager.inst();
         BottomNavigationView mNavigation = findViewById(R.id.navigation);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BaseFragment baseFragment = new BaseFragment();
@@ -162,6 +164,12 @@ public class MainActivity extends AppCompatActivity implements MainUIListener {
             li.toArray(arr);
             ActivityCompat.requestPermissions(this, arr, PERMISSION_1010);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        TaskRunningManager.inst().release();
+        super.onDestroy();
     }
 
 }

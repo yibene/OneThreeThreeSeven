@@ -53,4 +53,8 @@ public class Config {
         }
         mIsInitialized = true;
     }
+
+    public Context getAppContext() {
+        return mAppContext;
+    }
 }

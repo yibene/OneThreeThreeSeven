@@ -2,6 +2,7 @@ package com.el.uso.onethreethreeseven.map;
 
 import android.support.annotation.IntDef;
 
+import com.el.uso.onethreethreeseven.R;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
@@ -77,6 +78,7 @@ public class BaseMarker implements ClusterItem {
         mMarkerType = MarkerType.UNKNOWN;
         mLatitude = lat;
         mLongitude = lng;
+        mMarkerIcon = R.drawable.default_marker;
     }
 
     public BaseMarker(double lat, double lng, String title, String snippet) {
@@ -91,6 +93,10 @@ public class BaseMarker implements ClusterItem {
     @MarkerType
     int getMarkerType() {
         return mMarkerType;
+    }
+
+    public int getMarkerIcon(boolean isClustered) {
+        return mMarkerIcon;
     }
 
     public String getId() {

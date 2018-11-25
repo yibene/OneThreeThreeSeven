@@ -17,13 +17,13 @@ public class StationData extends BaseData {
     public static final byte TYPE_NPCGAS = 0x23;
 
     @Expose
-    private UUID LocId; // only available for vm explorer mode
-    @Expose
     private int LocState; // only available for vm explorer mode
     @Expose
     private boolean IsBooked;
     @Expose
     private DateTime BookExpiredTime;
+    @Expose
+    private DateTime bookExpiredTime;
     @Expose
     private String RId;
     @Expose
@@ -79,76 +79,4 @@ public class StationData extends BaseData {
         DisplayName = name;
     }
 
-    public static String getTypeName(byte[] type) {
-        int brand = type[3] & 0xFF;
-
-        switch (brand) {
-            case TYPE_7_ELEVEN: {
-                return "7-Eleven";
-            }
-            case TYPE_FAMILY_MART: {
-                return "Family Mart";
-            }
-            case TYPE_OK: {
-                return "Circle K";
-            }
-            case TYPE_HI_LIFE: {
-                return "HiLife";
-            }
-            case TYPE_CPC: {
-                return "CPC";
-            }
-            case TYPE_FPCC: {
-                return "FPCC";
-            }
-            case TYPE_NPCGAS: {
-                return "NPCGAS";
-            }
-            default: {
-                return "";
-            }
-        }
-    }
-
-    public static int getTypeIcon(byte[] type) {
-        /*
-		int brand = type[3] & 0xFF;
-
-		switch (brand) {
-		case TYPE_7_ELEVEN: {
-			return R.drawable.ic_node_type_7_11;
-		}
-		case TYPE_FAMILY_MART: {
-			return R.drawable.ic_node_type_family_mart;
-		}
-		case TYPE_OK: {
-			return R.drawable.ic_node_type_ok;
-		}
-		case TYPE_HI_LIFE: {
-			return R.drawable.ic_node_type_hi_life;
-		}
-		case TYPE_CPC: {
-			return R.drawable.ic_node_type_cpc;
-		}
-		case TYPE_FPCC: {
-			return R.drawable.ic_node_type_fpcc;
-		}
-		case TYPE_NPCGAS: {
-			return R.drawable.ic_node_type_npcgas;
-		}
-		default: {
-			return R.drawable.ic_node_type_def;
-		}
-		}
-		*/
-        return 0;
-    }
-
-    public String getTypeName() {
-        return getTypeName(Type);
-    }
-
-    public int getTypeIcon() {
-        return getTypeIcon(Type);
-    }
 }

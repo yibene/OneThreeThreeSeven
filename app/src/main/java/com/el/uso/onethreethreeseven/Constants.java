@@ -99,9 +99,9 @@ public class Constants {
     public static final int TASK_RUN_DECODE_BITMAP = 14;
     public static final int TASK_RUN_SYNC_FEATURES = 15;
 
-    public static final int TASK_RUN_LOGIN_TASK = 1001;
-    public static final int TASK_RUN_GET_AD_TASK = 1002;
-    public static final int TASK_RUN_GET_GOSTATION_TASK = 1003;
+    public static final int TASK_RUN_LOGIN = 1001;
+    public static final int TASK_RUN_GET_AD = 1002;
+    public static final int TASK_RUN_GET_STATION_DATA = 1003;
     public static final int TASK_RUN_GET_HC_LIST_TASK = 1004;
     public static final int TASK_RUN_GET_MAP_ROUTE_TASK = 1005;
     public static final int TASK_RUN_GET_NEARBY_BATTERY_TASK = 1006;

@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by Cash on 24/01/2018.
- *
  */
 
 public class Solution {
@@ -77,7 +79,7 @@ public class Solution {
         for (int i = 0; i < nums.length; i++) {
             int sub = target - nums[i];
             if (twoSum.containsValue(sub) && twoSum.get(sub) != i) {
-                return new int[] {i, twoSum.get(sub)};
+                return new int[]{i, twoSum.get(sub)};
             }
         }
         throw new IllegalArgumentException("No solution");
@@ -140,7 +142,7 @@ public class Solution {
                 }
                 j++;
             }
-            max = Math.max(j-i, max);
+            max = Math.max(j - i, max);
         }
         return max;
     }
@@ -148,7 +150,7 @@ public class Solution {
     public int[][] getCounts(String[] input) {
         int[][] counts = new int[input.length][2];
         for (int i = 0; i < input.length; i++) {
-            for (int j= 0; j < input[i].length(); j++) {
+            for (int j = 0; j < input[i].length(); j++) {
                 if (input[i].charAt(j) == '0') counts[i][0]++;
                 if (input[i].charAt(j) == '1') counts[i][1]++;
             }
@@ -178,6 +180,40 @@ public class Solution {
                 }
             }
         };
+    }
+
+    public void depthFirstTraversal(Node rootNode) {
+
+        Stack<Node> s = new Stack<>();
+        s.add(rootNode);
+        rootNode.visited = true;
+        while (!s.isEmpty()) {
+            Node n = s.pop();
+            System.out.print(n.data + " ");
+            for (Node adj : n.adjacentNodes) {
+                if (!adj.visited) {
+                    adj.visited = true;
+                    s.push(adj);
+                }
+            }
+        }
+    }
+
+    public void breadthFirstTraversal(Node rootNode) {
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(rootNode);
+        rootNode.visited = true;
+        while (!q.isEmpty()) {
+            Node n = q.poll();
+            System.out.print(n.data + " ");
+            for (Node adj : n.adjacentNodes) {
+                if (!adj.visited) {
+                    adj.visited = true;
+                    q.add(adj);
+                }
+            }
+        }
     }
 
 }

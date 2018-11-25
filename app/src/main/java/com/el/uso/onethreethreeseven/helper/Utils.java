@@ -120,9 +120,9 @@ public class Utils {
         }
     }
 
-    public static String readFromRoot(Context context, String fileName) {
-
-    }
+//    public static String readFromRoot(Context context, String fileName) {
+//
+//    }
 
     public static String readFromRaw(Context context, int rawResource) {
         InputStream inputStream = context.getResources().openRawResource(rawResource);
